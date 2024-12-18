@@ -1,217 +1,221 @@
--- I Will create Library DataBase it is copy from Library Database
--- i will not create any stored procedure or function or trigger
--- i will add all foreign key at the end of the script
-Create DATABASE Library
+-- Create Library Database
+Create Database Library;
 
--- create tables same as Library Database
-use Library
+-- Use the Library Database
+Use Library;
 
--- create table Authors
-CREATE TABLE [dbo].[Author] (
-    [Id]   INT          IDENTITY (1, 1) NOT NULL,
-    [Name] VARCHAR (50) NOT NULL,
-    CONSTRAINT [PK_Author] PRIMARY KEY CLUSTERED ([Id] ASC)
+-- Create Table Authors
+Create Table Author
+(
+    Id   Int Identity (1, 1) Not Null,
+    Name Varchar(50)         Not Null,
+    Constraint PK_Author Primary Key Clustered (Id Asc)
 );
 
--- create table Book
-CREATE TABLE [dbo].[Book] (
-    [Id]           INT          IDENTITY (1, 1) NOT NULL,
-    [Title]        VARCHAR (50) NOT NULL,
-    [Cat_id]       INT          NOT NULL,
-    [Publisher_id] INT          NOT NULL,
-    [Shelf_code]   VARCHAR (3)  NOT NULL,
-    CONSTRAINT [PK_Book] PRIMARY KEY CLUSTERED ([Id] ASC),
+-- Create Table Book
+Create Table Book
+(
+    Id          Int Identity (1, 1) Not Null,
+    Title       Varchar(50)         Not Null,
+    CatId       Int                 Not Null,
+    PublisherId Int                 Not Null,
+    ShelfCode   Varchar(3)          Not Null,
+    Constraint PK_Book Primary Key Clustered (Id Asc)
 );
 
--- create table Book_Author
-CREATE TABLE [dbo].[Book_Author] (
-    [Book_id]   INT NOT NULL,
-    [Author_id] INT NOT NULL,
-    CONSTRAINT [PK_Book_Author] PRIMARY KEY CLUSTERED ([Book_id] ASC, [Author_id] ASC),
+-- Create Table BookAuthor
+Create Table BookAuthor
+(
+    BookId   Int Not Null,
+    AuthorId Int Not Null,
+    Constraint PK_BookAuthor Primary Key Clustered (BookId Asc, AuthorId Asc)
 );
 
--- create table Borrowing
-CREATE TABLE [dbo].[Borrowing] (
-    [Emp_id]      INT          NOT NULL,
-    [Book_id]     INT          NOT NULL,
-    [User_ssn]    VARCHAR (50) NOT NULL,
-    [Borrow_date] DATE         NOT NULL,
-    [Due_date]    DATE         NOT NULL,
-    [Amount]      INT          NULL,
-    CONSTRAINT [PK_Borrowing] PRIMARY KEY CLUSTERED ([Book_id] ASC, [Borrow_date] ASC),
+-- Create Table Borrowing
+Create Table Borrowing
+(
+    EmpId      Int         Not Null,
+    BookId     Int         Not Null,
+    UserSsn    Varchar(50) Not Null,
+    BorrowDate Date        Not Null,
+    DueDate    Date        Not Null,
+    Amount     Int         Null,
+    Constraint PK_Borrowing Primary Key Clustered (BookId Asc, BorrowDate Asc)
 );
 
--- create table Category
-CREATE TABLE [dbo].[Category] (
-    [Id]       INT          IDENTITY (1, 1) NOT NULL,
-    [Cat_name] VARCHAR (50) NOT NULL,
-    CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED ([Id] ASC)
+-- Create Table Category
+Create Table Category
+(
+    Id      Int Identity (1, 1) Not Null,
+    CatName Varchar(50)         Not Null,
+    Constraint PK_Category Primary Key Clustered (Id Asc)
 );
 
--- create table Employee
-CREATE TABLE [dbo].[Employee] (
-    [Id]       INT           IDENTITY (1, 1) NOT NULL,
-    [Fname]    VARCHAR (50)  NOT NULL,
-    [Lname]    VARCHAR (50)  NOT NULL,
-    [phone]    VARCHAR (50)  NULL,
-    [Email]    VARCHAR (50)  NULL,
-    [Address]  VARCHAR (100) NULL,
-    [DOB]      DATE          NULL,
-    [Salary]   INT           NULL,
-    [Bouns]    INT           NULL,
-    [Super_id] INT           NULL,
-    [Floor_no] INT           NULL,
-    CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED ([Id] ASC),
+-- Create Table Employee
+Create Table Employee
+(
+    Id      Int Identity (1, 1) Not Null,
+    FName   Varchar(50)         Not Null,
+    LName   Varchar(50)         Not Null,
+    Phone   Varchar(50)         Null,
+    Email   Varchar(50)         Null,
+    Address Varchar(100)        Null,
+    Dob     Date                Null,
+    Salary  Int                 Null,
+    Bonus   Int                 Null,
+    SuperId Int                 Null,
+    FloorNo Int                 Null,
+    Constraint PK_Employee Primary Key Clustered (Id Asc)
 );
 
--- create table Floor
-CREATE TABLE [dbo].[Floor] (
-    [Number]      INT  NOT NULL,
-    [Num_blocks]  INT  NOT NULL,
-    [MG_ID]       INT  NULL,
-    [Hiring_Date] DATE NULL,
-    CONSTRAINT [PK_Floor] PRIMARY KEY CLUSTERED ([Number] ASC),
+-- Create Table Floor
+Create Table Floor
+(
+    Number     Int  Not Null,
+    NumBlocks  Int  Not Null,
+    MgId       Int  Null,
+    HiringDate Date Null,
+    Constraint PK_Floor Primary Key Clustered (Number Asc)
 );
 
--- create table Publisher
-CREATE TABLE [dbo].[Publisher] (
-    [Id]   INT          IDENTITY (1, 1) NOT NULL,
-    [Name] VARCHAR (50) NOT NULL,
-    CONSTRAINT [PK_Publisher] PRIMARY KEY CLUSTERED ([Id] ASC)
+-- Create Table Publisher
+Create Table Publisher
+(
+    Id   Int Identity (1, 1) Not Null,
+    Name Varchar(50)         Not Null,
+    Constraint PK_Publisher Primary Key Clustered (Id Asc)
 );
 
--- create table Shelf
-CREATE TABLE [dbo].[Shelf] (
-    [Code]      VARCHAR (3) NOT NULL,
-    [Floor_num] INT         NOT NULL,
-    CONSTRAINT [PK_Shelf] PRIMARY KEY CLUSTERED ([Code] ASC),
+-- Create Table Shelf
+Create Table Shelf
+(
+    Code     Varchar(3) Not Null,
+    FloorNum Int        Not Null,
+    Constraint PK_Shelf Primary Key Clustered (Code Asc)
 );
 
--- create table Users
-CREATE TABLE [dbo].[Users] (
-    [SSN]        VARCHAR (50) NOT NULL,
-    [User_Name]  VARCHAR (20) NOT NULL,
-    [User_Email] VARCHAR (50) NULL,
-    [Emp_id]     INT          NOT NULL,
-    CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([SSN] ASC),
+-- Create Table Users
+Create Table Users
+(
+    Ssn       Varchar(50) Not Null,
+    UserName  Varchar(20) Not Null,
+    UserEmail Varchar(50) Null,
+    EmpId     Int         Not Null,
+    Constraint PK_User Primary Key Clustered (Ssn Asc)
 );
 
--- create table User_Phones
-CREATE TABLE [dbo].[User_phones] (
-    [User_ssn]  VARCHAR (50) NOT NULL,
-    [Phone_num] VARCHAR (11) NOT NULL,
-    CONSTRAINT [PK_User_phones] PRIMARY KEY CLUSTERED ([User_ssn] ASC, [Phone_num] ASC),
+-- Create Table UserPhones
+Create Table UserPhones
+(
+    UserSsn  Varchar(50) Not Null,
+    PhoneNum Varchar(11) Not Null,
+    Constraint PK_UserPhones Primary Key Clustered (UserSsn Asc, PhoneNum Asc)
 );
 
--- Now i will add all foreign key
+-- Add Foreign Keys
 
--- Book table
-ALTER TABLE [dbo].[Book]
-ADD FOREIGN KEY ([Cat_id]) REFERENCES [dbo].[Category] ([Id]),
-    FOREIGN KEY ([Publisher_id]) REFERENCES [dbo].[Publisher] ([Id]),
-    FOREIGN KEY ([Shelf_code]) REFERENCES [dbo].[Shelf] ([Code])
+-- Book Table
+Alter Table Book
+    Add Foreign Key (CatId) References Category (Id),
+        Foreign Key (PublisherId) References Publisher (Id),
+        Foreign Key (ShelfCode) References Shelf (Code);
 
--- Book_Author table
-ALTER TABLE [dbo].[Book_Author]
-ADD FOREIGN KEY ([Author_id]) REFERENCES [dbo].[Author] ([Id]),
-    FOREIGN KEY ([Book_id]) REFERENCES [dbo].[Book] ([Id])
+-- BookAuthor Table
+Alter Table BookAuthor
+    Add Foreign Key (AuthorId) References Author (Id),
+        Foreign Key (BookId) References Book (Id);
 
--- Borrowing table
-ALTER TABLE [dbo].[Borrowing]
-ADD FOREIGN KEY ([Book_id]) REFERENCES [dbo].[Book] ([Id]),
-    FOREIGN KEY ([Emp_id]) REFERENCES [dbo].[Employee] ([Id]),
-    FOREIGN KEY ([User_ssn]) REFERENCES [dbo].[Users] ([SSN])
+-- Borrowing Table
+Alter Table Borrowing
+    Add Foreign Key (BookId) References Book (Id),
+        Foreign Key (EmpId) References Employee (Id),
+        Foreign Key (UserSsn) References Users (Ssn);
 
--- Employee table
-ALTER TABLE [dbo].[Employee]
-ADD FOREIGN KEY ([Super_id]) REFERENCES [dbo].[Employee] ([Id]),
-    FOREIGN KEY ([Floor_no]) REFERENCES [dbo].[Floor] ([Number])
+-- Employee Table
+Alter Table Employee
+    Add Foreign Key (SuperId) References Employee (Id),
+        Foreign Key (FloorNo) References Floor (Number);
 
--- Floor table
-ALTER TABLE [dbo].[Floor]
-ADD FOREIGN KEY ([MG_ID]) REFERENCES [dbo].[Employee] ([Id])
+-- Floor Table
+Alter Table Floor
+    Add Foreign Key (MgId) References Employee (Id);
 
--- Shelf table
-ALTER TABLE [dbo].[Shelf]
-ADD FOREIGN KEY ([Floor_num]) REFERENCES [dbo].[Floor] ([Number])
+-- Shelf Table
+Alter Table Shelf
+    Add Foreign Key (FloorNum) References Floor (Number);
 
--- Users table
-ALTER TABLE [dbo].[Users]
-ADD FOREIGN KEY ([Emp_id]) REFERENCES [dbo].[Employee] ([Id])
+-- Users Table
+Alter Table Users
+    Add Foreign Key (EmpId) References Employee (Id);
 
--- User_phones table
-ALTER TABLE [dbo].[User_phones]
-ADD FOREIGN KEY ([User_ssn]) REFERENCES [dbo].[Users] ([SSN])
+-- UserPhones Table
+Alter Table UserPhones
+    Add Foreign Key (UserSsn) References Users (Ssn);
 
--- Now i will add some data to the tables
--- i will add data to the tables same as Library Database
+-- Insert Data
 
--- Author table
-INSERT INTO [dbo].[Author] ([Name]) VALUES ('Author1')
-INSERT INTO [dbo].[Author] ([Name]) VALUES ('Author2')
-INSERT INTO [dbo].[Author] ([Name]) VALUES ('Author3')
+-- Author Table
+Insert Into Author (Name)
+Values ('Author1'),
+       ('Author2'),
+       ('Author3');
 
--- Category table
-INSERT INTO [dbo].[Category] ([Cat_name]) VALUES ('Category1')
-INSERT INTO [dbo].[Category] ([Cat_name]) VALUES ('Category2')
-INSERT INTO [dbo].[Category] ([Cat_name]) VALUES ('Category3')
+-- Category Table
+Insert Into Category (CatName)
+Values ('Category1'),
+       ('Category2'),
+       ('Category3');
 
--- Publisher table
-INSERT INTO [dbo].[Publisher] ([Name]) VALUES ('Publisher1')
-INSERT INTO [dbo].[Publisher] ([Name]) VALUES ('Publisher2')
-INSERT INTO [dbo].[Publisher] ([Name]) VALUES ('Publisher3')
+-- Publisher Table
+Insert Into Publisher (Name)
+Values ('Publisher1'),
+       ('Publisher2'),
+       ('Publisher3');
 
--- Shelf table
-INSERT INTO [dbo].[Shelf] ([Code], [Floor_num]) VALUES ('A1', 1)
-INSERT INTO [dbo].[Shelf] ([Code], [Floor_num]) VALUES ('A2', 1)
-INSERT INTO [dbo].[Shelf] ([Code], [Floor_num]) VALUES ('A3', 1)
+-- Shelf Table
+Insert Into Shelf (Code, FloorNum)
+Values ('A1', 1),
+       ('A2', 1),
+       ('A3', 1);
 
--- Floor table
-INSERT INTO [dbo].[Floor] ([Number], [Num_blocks], [MG_ID], [Hiring_Date]) VALUES (1, 2, 1, '2020-01-01')
-INSERT INTO [dbo].[Floor] ([Number], [Num_blocks], [MG_ID], [Hiring_Date]) VALUES (2, 2, 2, '2020-01-01')
-INSERT INTO [dbo].[Floor] ([Number], [Num_blocks], [MG_ID], [Hiring_Date]) VALUES (3, 2, 3, '2020-01-01')
+-- Floor Table
+Insert Into Floor (Number, NumBlocks, MgId, HiringDate)
+Values (1, 2, 1, '2020-01-01'),
+       (2, 2, 2, '2020-01-01'),
+       (3, 2, 3, '2020-01-01');
 
--- Employee table
-INSERT INTO [dbo].[Employee] ([Fname], [Lname], [phone], [Email], [Address], [DOB], [Salary], [Bouns], [Super_id], 
-[Floor_no]) 
-VALUES ('Emp1', 'Emp1', '1234567890', '', 'Address1', '1990-01-01', 1000, 100, 1, 1) 
+-- Employee Table
+Insert Into Employee (FName, LName, Phone, Email, Address, Dob, Salary, Bonus, SuperId, FloorNo)
+Values ('Emp1', 'Emp1', '1234567890', '', 'Address1', '1990-01-01', 1000, 100, 1, 1),
+       ('Emp2', 'Emp2', '1234567890', '', 'Address2', '1990-01-01', 1000, 100, 2, 2),
+       ('Emp3', 'Emp3', '1234567890', '', 'Address3', '1990-01-01', 1000, 100, 3, 3);
 
-INSERT INTO [dbo].[Employee] ([Fname], [Lname], [phone], [Email], [Address], [DOB], [Salary], [Bouns], [Super_id], 
-[Floor_no]) 
-VALUES ('Emp2', 'Emp2', '1234567890', '', 'Address2', '1990-01-01', 1000, 100, 2, 2) 
+-- Users Table
+Insert Into Users (Ssn, UserName, UserEmail, EmpId)
+Values ('1234567890', 'User1', '', 1),
+       ('1234567890', 'User2', '', 2),
+       ('1234567890', 'User3', '', 3);
 
-INSERT INTO [dbo].[Employee] ([Fname], [Lname], [phone], [Email], [Address], [DOB], [Salary], [Bouns], [Super_id],
-[Floor_no])
-VALUES ('Emp3', 'Emp3', '1234567890', '', 'Address3', '1990-01-01', 1000, 100, 3, 3)
+-- UserPhones Table
+Insert Into UserPhones (UserSsn, PhoneNum)
+Values ('1234567890', '1234567890'),
+       ('1234567890', '1234567890'),
+       ('1234567890', '1234567890');
 
--- Users table
-INSERT INTO [dbo].[Users] ([SSN], [User_Name], [User_Email], [Emp_id]) VALUES ('1234567890', 'User1', '', 1) 
-INSERT INTO [dbo].[Users] ([SSN], [User_Name], [User_Email], [Emp_id]) VALUES ('1234567890', 'User2', '', 2) 
-INSERT INTO [dbo].[Users] ([SSN], [User_Name], [User_Email], [Emp_id]) VALUES ('1234567890', 'User3', '', 3)
+-- Book Table
+Insert Into Book (Title, CatId, PublisherId, ShelfCode)
+Values ('Book1', 1, 1, 'A1'),
+       ('Book2', 2, 2, 'A2'),
+       ('Book3', 3, 3, 'A3');
 
--- User_phones table
-INSERT INTO [dbo].[User_phones] ([User_ssn], [Phone_num]) VALUES ('1234567890', '1234567890')
-INSERT INTO [dbo].[User_phones] ([User_ssn], [Phone_num]) VALUES ('1234567890', '1234567890')
-INSERT INTO [dbo].[User_phones] ([User_ssn], [Phone_num]) VALUES ('1234567890', '1234567890')
+-- BookAuthor Table
+Insert Into BookAuthor (BookId, AuthorId)
+Values (1, 1),
+       (2, 2),
+       (3, 3);
 
--- Book table
-INSERT INTO [dbo].[Book] ([Title], [Cat_id], [Publisher_id], [Shelf_code]) VALUES ('Book1', 1, 1, 'A1')
-INSERT INTO [dbo].[Book] ([Title], [Cat_id], [Publisher_id], [Shelf_code]) VALUES ('Book2', 2, 2, 'A2')
-INSERT INTO [dbo].[Book] ([Title], [Cat_id], [Publisher_id], [Shelf_code]) VALUES ('Book3', 3, 3, 'A3')
-
--- Book_Author table
-INSERT INTO [dbo].[Book_Author] ([Book_id], [Author_id]) VALUES (1, 1)
-INSERT INTO [dbo].[Book_Author] ([Book_id], [Author_id]) VALUES (2, 2)
-INSERT INTO [dbo].[Book_Author] ([Book_id], [Author_id]) VALUES (3, 3)
-
--- Borrowing table
-INSERT INTO [dbo].[Borrowing] ([Emp_id], [Book_id], [User_ssn], [Borrow_date], [Due_date], [Amount]) VALUES (1, 1, '1234567890', '2020-01-01', '2020-01-01', 1)
-INSERT INTO [dbo].[Borrowing] ([Emp_id], [Book_id], [User_ssn], [Borrow_date], [Due_date], [Amount]) VALUES (2, 2, '1234567890', '2020-01-01', '2020-01-01', 1)
-INSERT INTO [dbo].[Borrowing] ([Emp_id], [Book_id], [User_ssn], [Borrow_date], [Due_date], [Amount]) VALUES (3, 3, '1234567890', '2020-01-01', '2020-01-01', 1)
-
-
-
-
-
-
-
+-- Borrowing Table
+Insert Into Borrowing (EmpId, BookId, UserSsn, BorrowDate, DueDate, Amount)
+Values (1, 1, '1234567890', '2020-01-01', '2020-01-01', 1),
+       (2, 2, '1234567890', '2020-01-01', '2020-01-01', 1),
+       (3, 3, '1234567890', '2020-01-01', '2020-01-01', 1);
