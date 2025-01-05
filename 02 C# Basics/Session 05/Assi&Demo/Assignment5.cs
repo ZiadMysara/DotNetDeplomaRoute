@@ -13,42 +13,9 @@ class Assignment5
         //P7.Run();
         //P8.Run();
         DemoNotes.Run();
-        
+
     }
 }
-/*
- Functions 
- 
-1- Explain the difference between passing (Value type 
-parameters) by value and by reference then write a suitable c# 
-example.
-
-2- Explain the difference between passing (Reference type 
-parameters) by value and by reference then write a suitable c# 
-example.
-
-3- Write a c# Function that accept 4 parameters from user and 
-return result of summation and subtracting of two numbers
-
-4- Write a program in C# Sharp to create a function to calculate the sum of 
-the individual digits of a given number.
- Output should be like 
- Enter a number: 25 
- The sum of the digits of the number 25 is: 7
-
-5- Create a function named "IsPrime", which receives an integer number 
-and retuns true if it is prime, or false if it is not:
-
-6- Create a function named MinMaxArray, to return the minimum and 
-maximum values stored in an array, using reference parameters
-
-7- Create an iterative (non-recursive) function to calculate the factorial 
-of the number specified as parameter
-
-8- Create a function named "ChangeChar" to modify a letter in a certain 
-position (0 based) of a string, replacing it with a different letter
- 
- */
 internal static class P1
 {
     private static void swap(int a, int b)
@@ -57,7 +24,7 @@ internal static class P1
         a = b;
         b = temp;
     }
-    private static void swapRef(ref int a,ref int b)
+    private static void swapRef(ref int a, ref int b)
     {
         int temp = a;
         a = b;
@@ -65,11 +32,11 @@ internal static class P1
     }
     public static void Run()
     {
-       /*
-        1- Explain the difference between passing (Value type
-        parameters) by value and by reference then write a suitable c#
-        example.
-        */
+        /*
+         1- Explain the difference between passing (Value type
+         parameters) by value and by reference then write a suitable c#
+         example.
+         */
         // by value
         Console.WriteLine("By Value");
         Console.WriteLine("*********");
@@ -77,7 +44,7 @@ internal static class P1
         Console.WriteLine($"Before swap x = {x} , y = {y}");
         swap(x, y);
         Console.WriteLine($"After swap x = {x} , y = {y}");
-       
+
         // by reference
         Console.WriteLine("By Reference");
         Console.WriteLine("*************");
@@ -85,7 +52,7 @@ internal static class P1
         Console.WriteLine($"Before swap x = {x} , y = {y}");
         swapRef(ref x, ref y);
         Console.WriteLine($"After swap x = {x} , y = {y}");
-        
+
         // when we pass by value the original value is not changed
         // when we pass by reference the original value is changed
     }
@@ -94,7 +61,7 @@ internal static class P2
 {
     private static void SumArr2(int[] arr)
     {
-        arr = new int[] { 1, 2, 3}; // this will not change the original array
+        arr = new int[] { 1, 2, 3 }; // this will not change the original array
         arr[0] = 100;
     }
     private static void SumArrRef2(ref int[] arr)
@@ -102,7 +69,7 @@ internal static class P2
         arr = new int[] { 1, 2, 3 }; // this will change the address of the original array
         arr[0] = 4;
     }
-    
+
     public static void Run()
     {
         /*
@@ -117,7 +84,7 @@ internal static class P2
         Console.WriteLine($"Before change numbers[0] = {numbers[0]}");
         SumArr2(numbers);
         Console.WriteLine($"After change numbers[0] = {numbers[0]}");
-        
+
         // by reference
         Console.WriteLine("By Reference");
         Console.WriteLine("*************");
@@ -125,7 +92,7 @@ internal static class P2
         Console.WriteLine($"Before change numbers[0] = {numbers[0]}");
         SumArrRef2(ref numbers);
         Console.WriteLine($"After change numbers[0] = {numbers[0]}");
-       
+
     }
 }
 internal static class P3
@@ -145,12 +112,12 @@ internal static class P3
         return result of summation and subtracting of two numbers
         */
         int a, b, c, d;
-        int []tempArr = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
+        int[] tempArr = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
         a = tempArr[0];
         b = tempArr[1];
         c = tempArr[2];
         d = tempArr[3];
-        
+
         Sum(a, b, c, d);
         Subtract(a, b, c, d);
 
@@ -182,8 +149,8 @@ internal static class P4
         int num = int.Parse(Console.ReadLine());
         sumOfDigites(num);
 
-        
-       
+
+
     }
 }
 internal static class P5
@@ -210,7 +177,7 @@ internal static class P5
         Console.Write("Enter a number: ");
         int num = int.Parse(Console.ReadLine());
         IsPrime(num);
-       
+
     }
 }
 internal static class P6
@@ -230,7 +197,7 @@ internal static class P6
                 max = arr[i];
             }
         }
-        
+
     }
     public static void Run()
     {
@@ -242,7 +209,7 @@ internal static class P6
         int min = 0, max = 0;
         MinMaxArray(arr, ref min, ref max);
         Console.WriteLine($"Min = {min} , Max = {max}");
-        
+
     }
 }
 internal static class P7
@@ -265,7 +232,7 @@ internal static class P7
         Console.Write("Enter a number: ");
         int num = int.Parse(Console.ReadLine());
         Factorial(num);
-       
+
     }
 }
 internal static class P8
@@ -290,6 +257,6 @@ internal static class P8
         char ch = char.Parse(Console.ReadLine());
         ChangeChar(ref str, index, ch);
         Console.WriteLine(str);
-       
+
     }
 }
