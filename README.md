@@ -4,7 +4,8 @@
 
 - Data Base with SQLServer
 - C# Basics
-- 
+- C# OOP
+- C# Advanced
 
 ---
 
