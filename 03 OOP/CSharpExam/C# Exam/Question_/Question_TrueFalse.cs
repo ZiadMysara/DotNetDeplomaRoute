@@ -21,6 +21,7 @@ namespace C__Exam.Question_
             }
             while (rightAnswer != 'a' && rightAnswer != 'b');
             AnswerList[0] = Body[rightAnswer - 'a'];
+            Console.Clear();
         }
         public Question_TrueFalse(string header, float mark, Answer rightAnswer) : base(header, mark, rightAnswer)
         {

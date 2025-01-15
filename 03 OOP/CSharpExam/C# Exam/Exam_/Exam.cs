@@ -19,7 +19,7 @@ namespace C__Exam.Exam_
 
             do
             {
-                Console.WriteLine("Please Enter the Time For Exam From (30 min to 180 min))");
+                Console.WriteLine("Please Enter the Time For Exam From (30 min to 180 min)");
                 isCorrect = int.TryParse(Console.ReadLine(), out time);
             }
             while (time < 30 || time > 180 || !isCorrect);
@@ -33,9 +33,9 @@ namespace C__Exam.Exam_
             }
             while (numOfQuestions < 1 || !isCorrect);
 
-
             this.Time = time;
             this.NumOfQuestions = numOfQuestions;
+            Console.Clear();
         }
         protected Exam(int numOfQuestions, Question[] questions, int time)
         {
@@ -53,7 +53,15 @@ namespace C__Exam.Exam_
             for (int i = 0; i < NumOfQuestions; i++)
             {
                 char answerID;
-                Console.WriteLine($"Mark: {Questions[i].Mark}");
+                if (typeof(Question_MCQ) == Questions[i].GetType())
+                {
+                    Console.WriteLine($"Question {i + 1} (MCQ)    Mark: {Questions[i].Mark}");
+                }
+                else
+                {
+                    Console.WriteLine($"Question {i + 1} (TF)     Mark: {Questions[i].Mark}");
+                }
+                Console.WriteLine();
                 Questions[i].ShowQuestion();
                 if (Questions[i].GetType() == typeof(Question_TrueFalse))
                 {
@@ -85,6 +93,15 @@ namespace C__Exam.Exam_
         }
         public abstract void ShowAfterExamEnd();
 
+        public float getTotlaMark()
+        {
+            float totalMark = 0;
+            foreach (Question question in Questions)
+            {
+                totalMark += question.Mark;
+            }
+            return totalMark;
+        }
 
         public float CalculateGrade()
         {

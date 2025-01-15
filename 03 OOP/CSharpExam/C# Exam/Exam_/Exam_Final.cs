@@ -21,6 +21,10 @@ namespace C__Exam.Exam_
                     Enum.TryParse<EQuestionType>(type, true, out TheQuestionType);
                 }
                 while (TheQuestionType == 0);
+                Console.Clear();
+
+                string quesType = TheQuestionType == EQuestionType.MCQ ? "MCQ" : "TF";
+                Console.WriteLine($"Question {i + 1}  ({quesType})");
 
                 Questions[i] = TheQuestionType switch //impossible to be none here because of the do while loop
                 {
@@ -57,14 +61,7 @@ namespace C__Exam.Exam_
         {
             Console.Clear();
             Console.WriteLine("Final Exam");
-            if (typeof(Question_MCQ) == Questions[0].GetType())
-            {
-                Console.WriteLine("MCQ Questions");
-            }
-            else
-            {
-                Console.WriteLine("TF Questions");
-            }
+
             DateTime t = DateTime.Now.AddMinutes(Time);
             Console.WriteLine($"Date: {DateTime.Now.ToShortDateString()} ");
             Console.WriteLine($"Time: start From {DateTime.Now.ToShortTimeString()} to {t.ToShortTimeString()}");
@@ -82,14 +79,22 @@ namespace C__Exam.Exam_
             //Array.ForEach(Questions, question => question.ShowQuestion());
             for (int i = 0; i < Questions.Length; i++)
             {
-                Console.WriteLine($"Mark: {Questions[i].Mark}");
+                if (typeof(Question_MCQ) == Questions[i].GetType())
+                {
+                    Console.WriteLine($"Question {i + 1} (MCQ)    Mark: {Questions[i].Mark}");
+                }
+                else
+                {
+                    Console.WriteLine($"Question {i + 1} (TF)     Mark: {Questions[i].Mark}");
+                }
+                Console.WriteLine();
                 Questions[i].ShowQuestion();
                 Console.WriteLine($"Your Answer: {Questions[i].AnswerList[1]}");
                 Console.WriteLine($"Correct Answer: {Questions[i].AnswerList[0]}");
                 Console.WriteLine("-------------------------------------------------");
 
             }
-            Console.WriteLine("Your Grade is: " + CalculateGrade());
+            Console.WriteLine($"Your Grade is: {CalculateGrade()} from {getTotlaMark()}");
         }
 
         #endregion

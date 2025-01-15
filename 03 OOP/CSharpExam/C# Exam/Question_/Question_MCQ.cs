@@ -45,7 +45,7 @@ namespace C__Exam.Question_
             }
             while (rightAnswer < 'a' || rightAnswer > 'd');
             AnswerList[0] = Body[rightAnswer - 'a'];
-
+            Console.Clear();
         }
 
         public Question_MCQ(string header, Answer[] body, float mark, Answer rightAnswer) : base(header, mark, rightAnswer)

@@ -11,6 +11,7 @@ namespace C__Exam.Exam_
             this.Questions = new Question_MCQ[this.NumOfQuestions];
             for (int i = 0; i < this.NumOfQuestions; i++)
             {
+                Console.WriteLine($"Question {i + 1}  (MCQ) ");
                 Questions[i] = new Question_MCQ();
             }
             char ChAnswer;
@@ -59,6 +60,9 @@ namespace C__Exam.Exam_
             //Show only the right answers 
             for (int i = 0; i < Questions.Length; i++)
             {
+
+                Console.WriteLine($"Question {i + 1} (MCQ)");
+                Console.WriteLine();
                 Questions[i].ShowQuestion();
                 Console.WriteLine($"Correct Answer: {Questions[i].AnswerList[0]}");
                 Console.WriteLine("-------------------------------------------------");
