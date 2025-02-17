@@ -171,3 +171,22 @@ create table Sales3.Instructor3(
 grant select, insert on Sales3.Department3 to Ziad3
 deny delete, update on Sales3.Department3 to Ziad3
 --=================================================================--
+----------------------- additional information ----------------------
+--=================================================================--
+use agma 
+-- IF EXISTS
+--example:
+
+IF EXISTS (SELECT 1 FROM Companys WHERE Comp_id = 0)
+BEGIN
+    SELECT 'Record Exists'
+END
+ELSE
+BEGIN
+    SELECT 'Record Does Not Exist'
+END
+
+-- why we use it?
+-- if we want to check if the record exists or not
+-- Time Complexity: O(1) (if Comp_id is indexed) else in worst case O(n) 
+-- IF EXISTS is optimized by SQL Server; it stops searching as soon as it finds the first matching row, making it efficient.
